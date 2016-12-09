@@ -1,0 +1,409 @@
+/*-------- MAIN STUFF ------------------------------*/
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,400italic,700,700italic,900,900italic|Lobster+Two:400,400italic,700italic,700');
+* {
+    font-family: 'Playfair Display';
+}
+
+body {
+    width: 90%;
+    margin: 0 auto; /*center stuff*/
+    align-items: center;
+    align-self: center;
+    align-content: center;
+    text-align: center;
+     margin-top: 30vh;
+	font-family: 'Playfair Display';
+	background-image:url("pattern.jpg");
+	background-repeat:repeat;
+	
+}
+
+body *{
+   display: inline-block;
+}
+
+
+/*header span {
+    display: inline-block;
+}*/
+
+header h1 {
+    color:white;
+    text-shadow: 0 1px 0 #ccc, /* shadow from http://markdotto.com/playground/3d-text/*/
+    0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
+    font-size: 3em;
+	font-family: 'Lobster Two';
+    margin:0;
+    padding:0;
+}
+
+/*-------- NAVIGATION MENU ------------------------*/
+/*adaptado de from http://designshack.net/articles/css/5-simple-and-practical-css-list-styles-you-can-copy-and-paste/*/
+
+header{
+    position: fixed;
+    width:100vw;
+    height:20vh;
+    top:0;
+    left:0;
+     background:border-box;  background-color: #8B0000;
+           z-index:100;
+     color:white;
+}
+/*
+header h1{
+    font-size:6vh;
+}
+
+header nav *{
+     height: 3vh;
+}
+
+header nav span input{
+     width: 9vw;
+     height: 3vh;
+}*/
+
+nav h2 {
+    font-weight: bold;
+    text-decoration: none;
+    color: #aaa;
+    font: 3em;
+    margin: 0;
+}
+
+nav ul {
+    overflow: auto;
+    list-style-type: none;
+overflow: visible
+}
+
+    nav ul li {
+        display: inline-block;
+        height: 20px;
+        margin-right: 0px;
+        border-right: 1px solid #aaa;
+        padding: 0 20px;
+    }
+
+        nav ul li:last-child {
+            border-right: none;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #ccc;
+            font: 3em;
+            text-transform: uppercase;
+            -webkit-transition: all 0.5s ease;
+            -moz-transition: all 0.5s ease;
+            -o-transition: all 0.5s ease;
+            -ms-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+	    overflow: visible
+        }
+
+            nav ul li a:hover {
+                color: #666;
+            }
+
+        nav ul li.active a {
+            font-weight: bold;
+            color: white;
+            /*color: #333;*/
+        }
+
+/*---------- event.php display ------------------------------------*/
+
+section#pseudo_chat {
+    float: right;
+    /*margin: 0 1.5%;*/
+    width: 20vw;
+    height:auto;
+    top:10vh;
+    left:75vw;
+    position:fixed;
+    z-index:105;
+    /*transform:translate(0,-50%);*/
+    background:border-box;  background-color: #605f81;
+    margin: 0 0 0 0;
+    padding: 0 4% 0 0;
+
+        border: 1px solid;
+    border-radius: 4px;
+    box-shadow: 0 1px 0 #aaa, 0 2px 0 #bbb, 0 3px 0 #ddd;
+}
+
+section#pseudo_chat *{
+    text-align: left;
+}
+
+aside#event {
+    display:block;
+    float: left;
+    margin: 0 0 0 0;
+    width: 20vw;
+    position:fixed;
+    transform:translate(0,-5vh);
+    font:1em;
+}
+
+aside#event section{
+    display:block;
+}
+
+aside#event p{
+    display:block;
+/*white-space: nowrap;*/
+  overflow: hidden;
+    text-overflow: ellipsis
+}
+
+#comments {
+    float: right;
+    /*top:8vh;*/
+      width: 23vw;
+    height:24vh;
+    /*top:40vh;*/
+    z-index:3;
+    transform:translate(4vw,0);
+    margin:0;
+        margin-top:17vh;
+}
+
+#registered_users {
+    float: right;
+    /*top:8vh;*/
+      width: 23vw;
+    height:24vh;
+    /*top:40vh;*/
+    z-index:115;
+    transform:translate(5vw,0);
+    margin:0;
+        margin-top:20vh;
+}
+
+#main_image {
+   // width: 100%;
+  max-height:30vh;
+  max-width:30vw;
+}
+
+#high_res_img {
+
+  margin: 0;
+  align-items: baseline;
+  float:right;
+  position:fixed;
+  /*top: 50vh;*/
+  left: 50vw;
+  margin-top: 35vh;
+  max-height:38vh;
+  max-width:40vw;
+  transform: translate(-50%, -100%);
+}
+
+#image_slider {
+   
+    position:fixed;
+    top:70vh;
+    left:50vw;
+    width: 50vw;
+    height:15vh;
+    /*position:relative;*/
+    /*transform: translate(0,48%);*/
+  /*top: 50%;
+  left: 50%;
+  transform: translate(-50%, -15%);*/
+    /*margin: 0.2em;*/
+    transform: translate(-50%, 0);
+    padding:0;
+}
+
+#show_regs_or_coms_button {
+    background:border-box;  background-color: white;
+    border: 1px solid;
+    border-radius: 4px;
+    box-shadow: 0 1px 0 #aaa, 0 2px 0 #bbb, 0 3px 0 #ddd;
+    padding: 0 5em 0 3px;
+    align-content:center;
+    text-align:left;
+    transform:translate(0,50%);
+}
+
+.comment {
+
+    text-align:left;
+
+    background:border-box;  background-color: white;
+   /* text-align: left;*/
+    width: 98%;
+    border: 1px solid;
+    border-radius: 4px;
+    box-shadow: 0 1px 0 #aaa, 0 2px 0 #bbb, 0 3px 0 #ddd;
+    margin-top: 0.4em;
+    padding: 0.1em;
+  overflow: hidden;
+    text-overflow: ellipsis
+}
+    
+    .comment h2 {
+        text-indent:2%;
+        transform: translate(0,-5%);
+        width: 95%;
+        font-size: 1em;
+        margin:0 ; /*0 0.5em 0;*/
+        border: 1px solid;
+        border-radius: 5px;
+        font-weight: bold;
+        background-color: #eee;
+    }
+
+/*.box tr{
+    box-shadow:
+        0 1px 0 #ccc, 
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
+
+        background-color: white;
+        border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    color: black;
+    
+    display: inline-block;
+    font-size: 12px;
+}*/
+
+/*--------- form button class -------------------------------------*/
+
+.form_button {
+    box-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25);
+    background-color: white;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    color: black;
+    display: inline-block;
+    font-size: 12px;
+    margin: 10px 2px 5px 2px;
+    padding: 4px 8px;
+}
+
+    .form_button:hover {
+        box-shadow: 0 2px 0 #bbb, 0 3px 0 #b9b9b9, 0 4px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25);
+        background-color: #ebebeb;
+        position: relative;
+        top: 1px;
+    }
+
+    .form_button:active {
+        box-shadow: 0 2px 0 #bbb, 0 3px 0 #b9b9b9, 0 4px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2);
+        background-color: #ebebeb;
+        position: relative;
+        top: 3px;
+    }
+
+
+/*--------------- slider button --------------------------*/
+.slider_button {
+    margin:0 3em;
+    text-align: center;
+    font-weight: bold;
+    border: 0.1em solid;
+    border-radius: 0.3em;
+    height: 1.3em;
+    width: 1.3em;
+    transform:translate(0,-300%);
+}
+
+    .slider_button:hover {
+        text-align: center;
+        font-weight: bold;
+        height: 1.3em;
+        width: 1.3em;
+        background-color: lightgrey;
+        transform:translate(0,-300%);
+    }
+
+    .slider_button:active {
+        text-align: center;
+        font-weight: bold;
+        height: 1.3em;
+        width: 1.3em;
+        transform:translate(0,-300%);
+    }
+
+/*--------------- OTHERS --------------------------*/
+#create_event_form label {
+    display: block;
+    /*color: #FFF;*/
+}
+
+textarea{
+    padding: 2px; 
+    width: 90%;
+    height: 5em;
+    resize: none;
+    overflow: auto;
+}
+
+#create_event_form *{
+max-width:40vh;
+left:50%;
+}
+
+.print_events{
+    margin:0;
+    padding: 0 1em;
+}
+
+.left_float
+{
+float:left;
+}
+.right_float
+{
+float:right;
+}
+
+
+table{ display: table }
+
+table tr{
+display: table-row;
+}
+
+table td{
+display: table-cell;
+}
+
+
+.list_img_thumbs{
+    margin: 0;
+    padding: 0;
+    width:40%;
+    height:40%;
+}
+
+script{
+   display: none;
+}
+/* http://stackoverflow.com/questions/2906582/how-to-create-an-html-button-that-acts-like-a-link */
+a.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+	display: inline;
+    text-decoration: none;
+    color: initial;
+}
