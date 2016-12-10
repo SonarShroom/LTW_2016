@@ -1,0 +1,18 @@
+o que falta fazer
+
+- resto das funçoes da web app
+- diferenciar o menu após o login (exiete um, é preciso 2. um p o owner e um p o reviewer.
+		talvez fazer um apra o user normal ver os favoritos)
+- o inbox ou central de notificacoes, do tipo , tens um comentario no teu restaurante
+- mudar as janelas de alerta feitas pelo java script !
+- formulario de registo em janela feio pra c*, criar pagina para isso
+- mudar o layout do pos registo (menu), esta feio a parte do (username)(botao de logout)
+
+-testar o login+register+recover -esta a funcionar, mas pode sempre ter um bugzito
+
+: houve tmb uma falha de interpretaçao do enunciado,
+o owner coloca a review
+o reviewer faz rate (1 a 5, podemos por icones de estrelas pra ficar munituh)
+	e pode tmb escrever um pequeno comentario
+ha tmb a funçao de poder escrever uma reply a essa review (talvez por todos os users)
+- ficaria tmb porreiro a possibilidade de colocar uma central de notificacoes se der tempo
