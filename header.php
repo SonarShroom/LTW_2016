@@ -23,7 +23,7 @@ $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
 
 function checkLogged()
 {
-	 if (isset($_SESSION['login_user'])
+	 if (isset($_SESSION['login_user'])				// erro
 		 &&  $_SESSION['login_user']!=null
 	 && isset($_SESSION['login_username'])
 		 &&  $_SESSION['login_username']!=null
@@ -64,7 +64,7 @@ echo '<ul id="loggedin_options">
 function display_owner_form(){
 echo '<ul id="loggedin_options"> 
 <li> <a href="main.php">Home</a> </li>
-<li> <a href="my_reviews.php">Restaurants</a> </li>
+<li> <a href="rest.php">Restaurants</a> </li>
 <li> <a href="create_review.php">My Restaurants</a> </li>
 <li> <a href="inbox.php">notifications ou inbox</a> </li>
 

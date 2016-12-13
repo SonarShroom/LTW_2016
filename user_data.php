@@ -21,12 +21,16 @@ function getUserReviews()
 		//go through all the results and build the html from it
 		foreach($results as &$review)
 		{
-			$html_string .= "<h3> " . $review['nome'] . " </h3>" .
-							"<h4> " . $review['stars'] . " </h4>";
+			$html_string .= "<li>";
+			
+			$html_string .= "<h3> " . $review['nome'] . " </h3><br><br>" .
+							"<h4> " . $review['stars'] . " </h4><br>";
 			if($review['comentario'] != null)
 			{
 				$html_string .= "<h5> " . $review['comentario'] . "</h5>";
 			}
+			
+			$html_string .= "</li>";
 		}
 		
 		//show a list with all the scores, and comments from each review
