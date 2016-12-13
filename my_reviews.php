@@ -1,6 +1,6 @@
 <?php 
 include('header.php');
-
+include('user_data.php');
 ?>
 
 <html>
@@ -20,7 +20,7 @@ include('header.php');
 	<div class="left_float">
 	<h2>  </h2>
 	<br>AS MINHAS REVIEWS BLA BLA BLA 
-	<?php //aqui faz o print das reviews ja feitas?>
+	<?php getUserReviews(); ?>
 	</div>
 	
 	
