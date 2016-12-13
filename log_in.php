@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") 	{
 	
 	$postusername = htmlentities($_POST['log_username']);
 	$postpass = htmlentities($_POST['log_password']);
-	$posttype = htmlentities($_POST['log_type']);
+	//$posttype = htmlentities($_POST['log_type']);
 	if(isset($_POST['log_email'])) {
 		$postemail = htmlentities($_POST['log_email']);
 	}
@@ -59,6 +59,21 @@ function number_of_usersnamed_with_pass()    //pass repetido??
 	return count($result);
 }
 
+
+function user_type2()   //envia o username , retorna o tipo de utilizador (0 - owner , 1 - reviewer)
+{
+	global $postusername; //envia o username do login
+	$db = new PDO('sqlite:rest.db');
+	$stmt = $db->prepare("SELECT type from user WHERE user.username = '?' ");
+	$stmt->execute(array($postusername)); 
+    $usertype=$stmt->fetchAll();
+
+    return ($usertype['type']);
+
+}
+
+
+
 function number_of_users_with_email()   //email repetido??
 {
 	global $postusername;
@@ -74,7 +89,7 @@ function number_of_users_with_email()   //email repetido??
 
 // ----------------------- REGISTO
 	
- if($_POST['choice']=="REGISTER")
+ if($_POST['choice']=="REGISTER")  //SE REGISTER ESCOLHIDO
 {
 	if($_POST['log_password_conf']!=$postpass)
 	{
@@ -144,7 +159,13 @@ function number_of_users_with_email()   //email repetido??
 		return '';
 	}
 }
-else if($_POST['choice']!="LOGIN") 
+
+
+
+
+
+
+else if($_POST['choice']!="LOGIN")   //LOGIN ESCOLHIDO
 {
 	echo "INVALID ACCESS";
 	return '';
@@ -164,11 +185,14 @@ return;
         $_SESSION['login_user'] = $aux;// $postusername;
 		$_SESSION['login_username'] = $postusername;
 		
+		$usertype=user_type2() ;
+
+		$_SESSION['login_type'] = $usertype;
 		
 		
-		if(validate_user())	
+		if(validate_user())	 //se o validate_user der true..
 		{
-			echo "<script type='text/javascript'>alert('Login successful');window.location.href = 'main.php';</script>";
+			echo "<script type='text/javascript'>alert('Login successful');window.location.href = 'main.php';</script>"; //login success
 			header('Location: ' . str_replace( "errorMsg","pEM",$_SERVER['HTTP_REFERER']));
 		}
 		else 

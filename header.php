@@ -31,15 +31,43 @@ function checkLogged()
 	return false;
 }
 
+function user_type()   //envia o username , retorna o tipo de utilizador (0 - owner , 1 - reviewer)
+{
+	global $postusername; //envia o username do login
+	$db = new PDO('sqlite:rest.db');
+	$stmt = $db->prepare("SELECT type from user WHERE user.username = '?' ");
+	$stmt->execute(array($_SESSION['login_username'])); 
+    $usertype=$stmt->fetch();
+    $res = $usertype['type'];
+    echo "<script>alert($res);</script>";
+    return $res ;
+
+}
+
 //menu apos estar logado ! (temos de fazer um para o owner e outro para o reviewer - e talvez um apra o user normal qe apenas tera rests como favorito)
 
 //falta criar a pag my reviews, create a review 
-function display_logged_form(){
+function display_reviewer_form(){
 echo '<ul id="loggedin_options"> 
 <li> <a href="main.php">Home</a> </li>
 <li> <a href="my_reviews.php">My Reviews</a> </li>
 <li> <a href="inbox.php">notifications ou inbox</a> </li>
 <li> <a href="create_review.php">Create-a-Review</a> </li>
+</ul>';
+ echo '  <h2>'.$_SESSION['login_username'].'</h2>';
+ echo
+ '   <FORM METHOD="LINK" ACTION="log_out.php">
+<INPUT class="form_button" TYPE="submit" VALUE="LOGOUT">
+</FORM>';
+}
+
+function display_owner_form(){
+echo '<ul id="loggedin_options"> 
+<li> <a href="main.php">Home</a> </li>
+<li> <a href="my_reviews.php">Restaurants</a> </li>
+<li> <a href="create_review.php">My Restaurants</a> </li>
+<li> <a href="inbox.php">notifications ou inbox</a> </li>
+
 </ul>';
  echo '  <h2>'.$_SESSION['login_username'].'</h2>';
  echo
@@ -95,7 +123,7 @@ function display_register_form(){  //formulario de registo
 }
 
 
-//humm what tha phuck ? :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+//faz o login e seleciona o logged form para o owner ou reviewer 0- owner 1- reviewer
 function login_header()
 {
 	
@@ -103,7 +131,14 @@ function login_header()
 	echo '<nav>';
 	
 	if(session_status()===PHP_SESSION_ACTIVE && checkLogged())
-		display_logged_form();
+		{
+			
+			if ($_SESSION['login_type']== 0)
+			{
+				echo "<script>alert(É OWNER, CRL);</script>";
+		display_owner_form();
+			}
+	}
 	else display_login_form();
 	
 		if(isset($_GET['errorMsg'])) 
