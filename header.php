@@ -23,7 +23,7 @@ $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
 
 function checkLogged()
 {
-	 if (isset($_SESSION['login_user'])
+	 if (isset($_SESSION['login_user'])				// erro
 		 &&  $_SESSION['login_user']!=null
 	 && isset($_SESSION['login_username'])
 		 &&  $_SESSION['login_username']!=null
@@ -64,7 +64,7 @@ echo '<ul id="loggedin_options">
 function display_owner_form(){
 echo '<ul id="loggedin_options"> 
 <li> <a href="main.php">Home</a> </li>
-<li> <a href="my_reviews.php">Restaurants</a> </li>
+<li> <a href="rest.php">Restaurants</a> </li>
 <li> <a href="create_review.php">My Restaurants</a> </li>
 <li> <a href="inbox.php">notifications ou inbox</a> </li>
 
@@ -133,12 +133,19 @@ function login_header()
 	if(session_status()===PHP_SESSION_ACTIVE && checkLogged())
 		{
 			
-			if ($_SESSION['login_type']== 0)
+						if ($_SESSION['login_type'] == 0)  //se o type do utilizador que fez o login for 0, aparece o menu de owner...
 			{
-				echo "<script>alert(É OWNER, CRL);</script>";
+				
 		display_owner_form();
 			}
+
+			if ($_SESSION['login_type'] == 1) //... se for 1, aparece o menu de reviewer
+			{
+				
+		display_reviewer_form();
+			}
 	}
+	
 	else display_login_form();
 	
 		if(isset($_GET['errorMsg'])) 

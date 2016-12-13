@@ -28,7 +28,7 @@ function getRestaurants($restName, $sortMode)
 				$sqlQuery .= 'ORDER BY localizacao';
 				break;
 			case "locationdesc":
-				$sqlQuery .= 'ORDER BY localizacao DESC');
+				$sqlQuery .= 'ORDER BY localizacao DESC';
 				break;
 		}
 		$stmt->execute(array(strtolower($restName)));
@@ -47,7 +47,7 @@ function getRestaurants($restName, $sortMode)
 				$sqlQuery .= 'ORDER BY localizacao';
 				break;
 			case "locationdesc":
-				$sqlQuery .= 'ORDER BY localizacao DESC');
+				$sqlQuery .= 'ORDER BY localizacao DESC';
 				break;
 		}
 		$stmt->execute();
@@ -85,7 +85,7 @@ function printRestaurantReviews()
 	
 	$html_string .= "</ul>"
 	
-	if($html_string == "<ul></ul>")
+	if($html_string == "<ul></ul>") //erro
 	{
 		$html_string = "This restaurant hasn't been reviewed yet!";
 	}
