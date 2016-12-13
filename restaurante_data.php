@@ -102,8 +102,10 @@ function printSearchRestaurants()
 	foreach($restaurantsList as &$restaurant)
 	{
 		$html_string .= "<li>";
+		$linkToRest = "http://gnomo.fe.up.pt/~up201607942/rest.php?restName=" . $restaurant['nome'] . "&restId=" . $restaurant['id'];
 		
-		//TODO: PRINT OUT ALL RESTAURANTS
+		//TODO: ADD RESTAURANT REVIEW COUNT
+		$html_string .= "<a href=" . $linkToRest . ">" . $restaurant['nome'] . "</a>";
 		
 		$html_string .= "</li>";
 	}
