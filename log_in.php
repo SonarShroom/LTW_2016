@@ -15,7 +15,9 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") 	{
 	
 	$postusername = htmlentities($_POST['log_username']);
 	$postpass = htmlentities($_POST['log_password']);
-	//$posttype = htmlentities($_POST['log_type']);
+	if(isset($_POST['log_type'])) {
+		$posttype = htmlentities($_POST['log_type']);
+	}
 	if(isset($_POST['log_email'])) {
 		$postemail = htmlentities($_POST['log_email']);
 	}
@@ -64,11 +66,11 @@ function user_type2()   //envia o username , retorna o tipo de utilizador (0 - o
 {
 	global $postusername; //envia o username do login
 	$db = new PDO('sqlite:rest.db');
-	$stmt = $db->prepare("SELECT type from user WHERE user.username = '?' ");
+	$stmt = $db->prepare("SELECT type from user WHERE user.username = ? ");
 	$stmt->execute(array($postusername)); 
     $usertype=$stmt->fetchAll();
 
-    return ($usertype['type']);
+    return ($usertype[0]['type']);
 
 }
 

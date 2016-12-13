@@ -55,7 +55,7 @@ function main_display()
             Welcome to RestFeed. 
         </marquee>
 
-       	<br>Date  
+       	<br>
 	<div id="date_display"><?php // echo date('l jS \of F Y h:i:s A')?></div>
 
 

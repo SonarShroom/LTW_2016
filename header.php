@@ -133,12 +133,19 @@ function login_header()
 	if(session_status()===PHP_SESSION_ACTIVE && checkLogged())
 		{
 			
-			if ($_SESSION['login_type']== 0)
+						if ($_SESSION['login_type'] == 0)  //se o type do utilizador que fez o login for 0, aparece o menu de owner...
 			{
-				echo "<script>alert(É OWNER, CRL);</script>";
+				
 		display_owner_form();
 			}
+
+			if ($_SESSION['login_type'] == 1) //... se for 1, aparece o menu de reviewer
+			{
+				
+		display_reviewer_form();
+			}
 	}
+	
 	else display_login_form();
 	
 		if(isset($_GET['errorMsg'])) 
