@@ -1,5 +1,4 @@
 <?php
-
 include('header.php');
 include('restaurante_data.php');
 ?>
@@ -7,7 +6,7 @@ include('restaurante_data.php');
 <html>
 	
 	<head>
-		<title><?php $_GET['restName']?></title>
+		<title><?php if($_GET['restName'] != null) { echo $_GET['restName']; } else { echo "No restaurant selected!"; } ?></title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="css/myStyle.css"> 
 		<?php meta_includes(); ?>
@@ -21,7 +20,7 @@ include('restaurante_data.php');
 
 		<div class="left_float">
 			Restaurant Reviews
-			<?php getUserReviews(); ?>
+			<?php if($_GET['restName'] != null) { printRestaurantReviews(); } ?>
 		</div>
 	</body>
 	

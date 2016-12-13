@@ -1,9 +1,9 @@
 <?php
 
-$db = new PDO('sqlite:rest.db');
-
 function getRestaurants($restName, $sortMode)
 {
+	$db = new PDO('sqlite:rest.db');
+	
 	/* sort mode = sortMode 
 	 can be:
 	 alphabetical
@@ -31,6 +31,7 @@ function getRestaurants($restName, $sortMode)
 				$sqlQuery .= 'ORDER BY localizacao DESC';
 				break;
 		}
+		$stmt = $db->prepare($sqlQuery);
 		$stmt->execute(array(strtolower($restName)));
 	}
 	else
@@ -50,6 +51,7 @@ function getRestaurants($restName, $sortMode)
 				$sqlQuery .= 'ORDER BY localizacao DESC';
 				break;
 		}
+		$stmt = $db->prepare($sqlQuery);
 		$stmt->execute();
 	}
 	
@@ -59,6 +61,8 @@ function getRestaurants($restName, $sortMode)
 
 function printRestaurantReviews()
 {
+	$db = new PDO('sqlite:rest.db');
+	
 	//TODO: SEPARATE SQL FROM PRESENTATION
 	$stmt = $db->prepare('SELECT restaurante_reviews.stars as stars, restaurante_reviews.comentario as comentario, restaurante.nome as rest_name, user.username as username' .
 						 'FROM restaurante_reviews INNER JOIN restaurante ' .
@@ -83,9 +87,9 @@ function printRestaurantReviews()
 			$html_string .= "</li>";
 		}
 	
-	$html_string .= "</ul>"
+	$html_string .= "</ul>";
 	
-	if(strcmp($html_string, "<ul></ul>") == 0) //erro
+	if(strcmp($html_string, "<ul></ul>") == 0)
 	{
 		$html_string = "This restaurant hasn't been reviewed yet!";
 	}
@@ -95,6 +99,8 @@ function printRestaurantReviews()
 
 function printSearchRestaurants()
 {
+	$db = new PDO('sqlite:rest.db');
+	
 	$restaurantsList = getRestaurants($_GET['restName'], $_GET['sortMode']);
 	
 	$html_string = "<ul>";
@@ -110,7 +116,7 @@ function printSearchRestaurants()
 		$html_string .= "</li>";
 	}
 	
-	$html_string = "</ul>";
+	$html_string .= "</ul>";
 	
 	if(strcmp($html_string, "<ul></ul>") == 0)
 	{
