@@ -85,7 +85,7 @@ function printRestaurantReviews()
 	
 	$html_string .= "</ul>"
 	
-	if($html_string == "<ul></ul>") //erro
+	if(strcmp($html_string == "<ul></ul>") == 0) //erro
 	{
 		$html_string = "This restaurant hasn't been reviewed yet!";
 	}
@@ -112,7 +112,7 @@ function printSearchRestaurants()
 	
 	$html_string = "</ul>";
 	
-	if($html_string == "<ul></ul>")
+	if(strcmp($html_string == "<ul></ul>") == 0)
 	{
 		$html_string = "No restaurants found matching your criteria.";
 	}
