@@ -56,7 +56,7 @@ if(isset($_POST['uu']) && (isset($_POST['nn']) || isset($_POST['nuu'])))
 function updateUserDetails()
 {
 	$currPassword = $_POST['uu'];
-	$sqlQuery = "UPDATE user SET "
+	$sqlQuery = "UPDATE user SET ";
 	$execArray = array();
 	
 	if(isset($_POST['nn']))
@@ -77,7 +77,7 @@ function updateUserDetails()
 		}
 		array_push($execArray, $_POST['nuu']);
 	}
-	$sqlQuery .= $setpart . "WHERE id = ?"
+	$sqlQuery .= $setpart . "WHERE id = ?";
 	
 	$db = new PDO('sqlite:rest.db');
 	$stmt = $db->prepare($sqlQuery);
