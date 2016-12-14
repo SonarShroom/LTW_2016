@@ -1,5 +1,6 @@
-<?php 
+<?php
 session_start();
+$_SESSION = array();
 header('Location: ' . str_replace( "errorMsg","pEM",$_SERVER['HTTP_REFERER']));
-session_destroy(); 
+header("Refresh:0; url=main.php");
 ?>
