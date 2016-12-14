@@ -160,9 +160,8 @@ function getSearchRestaurants()
 function getOwnedRestaurants()
 {
 	$db = new PDO('sqlite:rest.db');
-	$stmt = $db->prepare("SELECT restaurante.nome as nome, restaurante.descricao as descricao, count(restaurante_reviews.restaurant_id) as num_reviews 
-	                      FROM restaurante INNER JOIN restaurante_reviews ON restaurante.id = restaurante_reviews.restaurant_id AND restaurante.owner = ?
-						  GROUP BY restaurante.nome");
+	$stmt = $db->prepare("SELECT * FROM restaurante_count_revs
+						  WHERE owner_id = ?");
 	$stmt->execute(array($_SESSION['login_user']));
 	
 	return $stmt->fetchAll();
