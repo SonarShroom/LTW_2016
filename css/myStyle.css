@@ -51,12 +51,16 @@ header{
 }
 block {
   background-color: #993333;
-  padding: 3em;
+	padding-top: 50px;
+    padding-right: 800px;
+    padding-bottom: 50px;
+    padding-left: 10px;
 }
 
 .line-break
 {
     display: block;
+	text-align: left;
 }
 nav h2 {
     font-weight: bold;

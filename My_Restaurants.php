@@ -26,7 +26,7 @@ include_once('php_sqlite_func.php');
   You can also edit a restaurant or delete it. <br><br><br><br>
 
 
-<div class="left_float">
+<div >
 
       <?php $result = getOwnedRestaurants();
 
