@@ -65,7 +65,8 @@ function display_owner_form(){
 echo '<ul id="loggedin_options"> 
 <li> <a href="main.php">Home</a> </li>
 <li> <a href="rest.php">Restaurants</a> </li>
-<li> <a href="create_review.php">My Restaurants</a> </li>
+<li> <a href="myRestaurant.php">My Restaurants</a> </li>
+<li> <a href="newRestaurant.php">Add Restaurant</a> </li>
 <li> <a href="inbox.php">notifications ou inbox</a> </li>
 
 </ul>';
