@@ -1,49 +1,48 @@
 <?php
 
-include_once('header.php');
-
 /* User functions */
 
 function getUserReviews()
 {
-	if(checklogged())
+	//get all comments based on username
+	
+	$db = new PDO('sqlite:rest.db');
+
+
+	$stmt = $db->prepare("SELECT restaurante_reviews.stars as stars, restaurante_reviews.comentario as comentario, restaurante.nome as nome 
+						 FROM restaurante_reviews INNER JOIN restaurante 
+						 ON restaurante.id = restaurante_reviews.restaurant_id AND user_id = ?");
+
+
+	$stmt->execute(array($_SESSION['login_user']));
+
+	return $stmt->fetchAll();
+	
+	/* ===PASSAR PARA FRONT END===
+	//$result = getUserReviews();
+	$html_string = "<ul>";
+	
+	//go through all the results and build the html from it
+	foreach($results as &$review)
 	{
-		//get all comments based on username
+		$html_string .= "<li>";
 		
-		$db = new PDO('sqlite:rest.db');
-
-
-		$stmt = $db->prepare("SELECT restaurante_reviews.stars as stars, restaurante_reviews.comentario as comentario, restaurante.nome as nome 
-							 FROM restaurante_reviews INNER JOIN restaurante 
-							 ON restaurante.id = restaurante_reviews.restaurant_id AND user_id = ?");
-
-
-		$stmt->execute(array($_SESSION['login_user']));
-
-		$results = $stmt->fetchAll();
-		$html_string = "<ul>";
-		
-		//go through all the results and build the html from it
-		foreach($results as &$review)
+		$html_string .= "<h3> " . $review['nome'] . " </h3><br><br>" .
+						"<h4> " . $review['stars'] . " </h4><br>";
+		if($review['comentario'] != null)
 		{
-			$html_string .= "<li>";
-			
-			$html_string .= "<h3> " . $review['nome'] . " </h3><br><br>" .
-							"<h4> " . $review['stars'] . " </h4><br>";
-			if($review['comentario'] != null)
-			{
-				$html_string .= "<h5> " . $review['comentario'] . "</h5>";
-			}
-			
-			$html_string .= "</li>";
+			$html_string .= "<h5> " . $review['comentario'] . "</h5>";
 		}
 		
-		//show a list with all the scores, and comments from each review
-		
-		$html_string .= "</ul>";
-		
-		echo $html_string;
+		$html_string .= "</li>";
 	}
+	
+	//show a list with all the scores, and comments from each review
+	
+	$html_string .= "</ul>";
+	
+	echo $html_string;
+	*/
 }
 
 /* Restaurant functions */
@@ -59,11 +58,12 @@ function getRestaurants($restName, $sortMode)
 	 location
 	 locationdesc*/
 	
-	$sqlQuery = 'SELECT * FROM restaurante ';
+	$sqlQuery = 'SELECT restaurante.nome as nome, restaurante.descricao as descricao, count(restaurante_reviews.restaurant_id) as num_reviews 
+	             FROM restaurante INNER JOIN restaurante_reviews ON restaurante.id = restaurante_reviews.restaurant_id ';
 	
 	if($restName == null || $restName == '')
 	{
-		$sqlQuery .= 'WHERE lower(restaurant.name) = ? ';
+		$sqlQuery .= 'AND lower(restaurant.name) = ? ';
 		switch($sortMode)
 		{
 			case "alphabetical":
@@ -103,11 +103,10 @@ function getRestaurants($restName, $sortMode)
 		$stmt->execute();
 	}
 	
-	$results = $stmt->fetchAll();
-	return results;
+	return $stmt->fetchAll();
 }
 
-if(isset($_POST['restName']) && isset($_POST['restDesc']) && isset($_POST['ownerId']))
+if(isset($_POST['restName']) && isset($_POST['restDesc']))
 {
 	insertRestaurant();
 }
@@ -115,15 +114,23 @@ function insertRestaurant()
 {
 	$db = new PDO('sqlite:rest.db');
 	$stmt = $db->prepare("INSERT INTO restaurante VALUES (?, ?, ?, ?)");
-	$stmt->execute(array(null, $restName, $restDesc, $_SESSION['login_user']));
+	$stmt->execute(array(null, $_POST['restName'], $_POST['restDesc'], $_SESSION['login_user']));
 }
 
-function printSearchRestaurants()
+function getSearchRestaurants()
 {
 	$db = new PDO('sqlite:rest.db');
 	
-	$restaurantsList = getRestaurants($_GET['restName'], $_GET['sortMode']);
+	if(isset($_GET['sortMode']))
+	{
+		return getRestaurants($_GET['restName'], $_GET['sortMode']);
+	}
+	else
+	{
+		return getRestaurants($_GET['restName'], "alphabetical");
+	}
 	
+	/* ===PASSAR PARA FRONT END===
 	$html_string = "Restaurant Reviews<br><ul>";
 	
 	foreach($restaurantsList as &$restaurant)
@@ -145,6 +152,7 @@ function printSearchRestaurants()
 	}
 	
 	echo $html_string;
+	*/
 }
 
 function getOwnedRestaurants()
@@ -205,18 +213,18 @@ function deleteReplyToReview($repId)
 	$stmt->execute(array($repId));
 }
 
-function printRestaurantReviews($restId)
+function getRestaurantReviews($restId)
 {
 	$db = new PDO('sqlite:rest.db');
-	
-	//TODO: SEPARATE SQL FROM PRESENTATION
 	$stmt = $db->prepare('SELECT restaurante_reviews.stars as stars, restaurante_reviews.comentario as comentario, user.username as username ' .
 						 'FROM restaurante_reviews INNER JOIN restaurante ' .
 						 'ON restaurante_reviews.restaurant_id = ? ' .
 						 'INNER JOIN user ON user.id = restaurante_reviews.user_id');
 	$stmt->execute(array($restId));
-	$results = $stmt->fetchAll();
+	return $stmt->fetchAll();
 	
+	/* ==PASSAR PARA FRONT END===
+	//$result = getUserReviews();
 	$html_string = "<ul>";
 	
 	foreach($results as &$review)
@@ -241,6 +249,7 @@ function printRestaurantReviews($restId)
 	}
 	
 	echo $html_string;
+	*/
 }
 
 ?>
