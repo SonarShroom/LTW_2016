@@ -50,9 +50,8 @@ function user_type()   //envia o username , retorna o tipo de utilizador (0 - ow
 function display_reviewer_form(){
 echo '<ul id="loggedin_options"> 
 <li> <a href="main.php">Home</a> </li>
+<li> <a href="rest.php">Restaurants</a> </li>
 <li> <a href="my_reviews.php">My Reviews</a> </li>
-<li> <a href="inbox.php">notifications ou inbox</a> </li>
-<li> <a href="create_review.php">Create-a-Review</a> </li>
 </ul>';
  echo '  <h2>'.$_SESSION['login_username'].'</h2>';
  echo
@@ -65,9 +64,8 @@ function display_owner_form(){
 echo '<ul id="loggedin_options"> 
 <li> <a href="main.php">Home</a> </li>
 <li> <a href="rest.php">Restaurants</a> </li>
-<li> <a href="myRestaurant.php">My Restaurants</a> </li>
+<li> <a href="My_Restaurants.php">My Restaurants</a> </li>
 <li> <a href="newRestaurant.php">Add Restaurant</a> </li>
-<li> <a href="inbox.php">notifications ou inbox</a> </li>
 
 </ul>';
  echo '  <h2>'.$_SESSION['login_username'].'</h2>';
