@@ -45,6 +45,45 @@ function getUserReviews()
 	*/
 }
 
+/* uu = pass
+   nn = new username
+   nuu = new password
+*/
+if(isset($_POST['uu']) && (isset($_POST['nn']) || isset($_POST['nuu'])))
+{
+	updateUserDetails();
+}
+function updateUserDetails()
+{
+	$currPassword = $_POST['uu'];
+	$sqlQuery = "UPDATE user SET "
+	$execArray = array();
+	
+	if(isset($_POST['nn']))
+	{
+		$setpart = "name = ? ";
+		array_push($execArray, $_POST['nn']);
+	}
+	
+	if(isset($_POST['nuu']))
+	{
+		if(!empty($setpart))
+		{
+			$setpart .= ", password = ? ";
+		}
+		else
+		{
+			$setpart = "password = ? ";
+		}
+		array_push($execArray, $_POST['nuu']);
+	}
+	$sqlQuery .= $setpart . "WHERE id = ?"
+	
+	$db = new PDO('sqlite:rest.db');
+	$stmt = $db->prepare($sqlQuery);
+	$stmt->execute($execArray); 
+}
+
 /* Restaurant functions */
 
 function getRestaurants($restName, $sortMode)
@@ -176,10 +215,14 @@ function getRestaurantName($restId)
 	return $results[0]['nome'];
 }
 
-function updateRestaurantInfo($restId, $restName, $restDesc)
+if(isset($_POST['restId']) && isset($_POST['restName']) && isset($_POST['restDesc']))
+{
+	updateRestaurantInfo();
+}
+function updateRestaurantInfo()
 {
 	$db = new PDO('sqlite:rest.db');
-	$stmt = $db->prepare("UPDATE ");
+	$stmt = $db->prepare("UPDATE restaurante SET nome = ?, descricao = ? WHERE id = ?");
 	$stmt->execute(array($restId));
 }
 
