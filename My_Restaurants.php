@@ -26,20 +26,24 @@ include_once('php_sqlite_func.php');
   You can also edit a restaurant or delete it. <br><br><br><br>
 
 
-<div >
+
 
       <?php $result = getOwnedRestaurants();
 
   
   //go through all the results and build the html from it
+      $html_string="";
+
   foreach($result as &$restaurants)
   {
 
     
-  $html_string = "<block><p class='line-break'><b>Name:</b> " . $restaurants['nome'] . 
-    "</p><p class='line-break'><b>Description: </b> " . $restaurants['descricao'] . 
-    "</p><p class='line-break'><b>Nr Reviews: </b> " . $restaurants['num_reviews'] . "</p></block>";
-
+  $html_string .= "<div><block><p class='line-break'><b>Name:</b> " . $restaurants['rest_nome'] . 
+    "</p><p class='line-break'><b>Description: </b> " . $restaurants['rest_descricao'] . 
+    "</p><p class='line-break'><b>Localization: </b> " . $restaurants['rest_localizacao'] . 
+    "</p><p class='line-break'><b>Nr Reviews: </b> " . $restaurants['num_reviews'] . 
+    "</p><p class='line-break'><a href='edit_restaurant.php?id=" . $restaurants['rest_id'] . "'>EDIT</a></p>
+    <p class='line-break'><a href='edit_restaurant.php?id=" . $restaurants['rest_id'] . "'>DELETE</a></p></block></div><br><br>";
 
   }
   
@@ -48,7 +52,7 @@ include_once('php_sqlite_func.php');
 
   
   echo $html_string; ?>
-    </div>
+   
   </body>
 
 </html>
