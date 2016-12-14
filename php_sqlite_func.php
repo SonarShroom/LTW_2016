@@ -55,7 +55,7 @@ if(isset($_POST['uu']) && (isset($_POST['nn']) || isset($_POST['nuu'])))
 }
 function updateUserDetails()
 {
-	$currPassword = $_POST['uu'];
+	$currPassword = md5($_POST['uu']);
 	$sqlQuery = "UPDATE user SET ";
 	$execArray = array();
 	
@@ -75,13 +75,13 @@ function updateUserDetails()
 		{
 			$setpart = "password = ? ";
 		}
-		array_push($execArray, $_POST['nuu']);
+		array_push($execArray, md5($_POST['nuu']));
 	}
 	$sqlQuery .= $setpart . "WHERE id = ?";
 	
 	$db = new PDO('sqlite:rest.db');
 	$stmt = $db->prepare($sqlQuery);
-	$stmt->execute($execArray); 
+	$stmt->execute($execArray);
 }
 
 /* Restaurant functions */
