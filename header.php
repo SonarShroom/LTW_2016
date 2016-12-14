@@ -53,7 +53,7 @@ echo '<ul id="loggedin_options">
 <li> <a href="rest.php">Restaurants</a> </li>
 <li> <a href="my_reviews.php">My Reviews</a> </li>
 </ul>';
- echo '  <h2>'.$_SESSION['login_username'].'</h2>';
+ echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . $_SESSION['login_username'];
  echo
  '   <FORM METHOD="LINK" ACTION="log_out.php">
 <INPUT class="form_button" TYPE="submit" VALUE="LOGOUT">
@@ -68,7 +68,8 @@ echo '<ul id="loggedin_options">
 <li> <a href="newRestaurant.php">Add Restaurant</a> </li>
 
 </ul>';
- echo '  <h2>'.$_SESSION['login_username'].'</h2>';
+ 
+echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . $_SESSION['login_username'];
  echo
  '   <FORM METHOD="LINK" ACTION="log_out.php">
 <INPUT class="form_button" TYPE="submit" VALUE="LOGOUT">

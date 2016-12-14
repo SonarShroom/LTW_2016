@@ -14,10 +14,11 @@ include('restaurante_data.php');
   
 	<body>
 		<header>
-			<?php login_header(); ?>
-			<h1><?php if(!empty($_GET['restId'])) { echo getRestaurantName($_GET['restId']); } else { echo "No restaurant selected!"; } ?></h1>
+			<h1>RestFeed</h1> <br>
+	<?php login_header(); ?>
+			
 		</header>
-
+<?php if(!empty($_GET['restId'])) { echo getRestaurantName($_GET['restId']); } else { echo "No restaurant selected!"; } ?>
 		<div class="left_float">
 			Restaurant Reviews
 			<?php if(!empty($_GET['restId'])) { printRestaurantReviews($_GET['restId']); } ?>

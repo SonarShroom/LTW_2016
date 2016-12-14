@@ -37,8 +37,9 @@ function main_display()
 <body>
 
     <header> 
+    	<h1>RestFeed</h1> <br>
 	<?php login_header(); ?>
-	<h1>RestFeed</h1> 
+
 	</header>
 	
     <br>

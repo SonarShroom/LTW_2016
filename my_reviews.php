@@ -13,7 +13,8 @@ include_once('php_sqlite_func.php');
 
 	<body>
 		<header>
-			<?php login_header(); ?>
+			<h1>RestFeed</h1> <br>
+	<?php login_header(); ?>
 		</header>
 
 		<div class="left_float">
