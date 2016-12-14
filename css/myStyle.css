@@ -1,7 +1,7 @@
 /*-------- MAIN STUFF ------------------------------*/
-@import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,400italic,700,700italic,900,900italic|Lobster+Two:400,400italic,700italic,700');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Qwigley');
 * {
-    font-family: 'Playfair Display';
+    font-family: 'Open Sans', sans-serif;
 }
 
 body {
@@ -12,7 +12,7 @@ body {
     align-content: center;
     text-align: center;
      margin-top: 30vh;
-	font-family: 'Playfair Display';
+	font-family: 'Open Sans', sans-serif;
 	background-image:url("pattern.jpg");
 	background-repeat:repeat;
 	
@@ -29,16 +29,15 @@ body *{
 
 header h1 {
     color:white;
-    /*text-shadow: 0 1px 0 #ccc, /* shadow from http://markdotto.com/playground/3d-text/*/ 
     0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
     font-size: 3em;
-	font-family: 'Lobster Two';
+	font-family: 'Qwigley', cursive;
     margin:0;
     padding:0;
 }
 
-/*-------- NAVIGATION MENU ------------------------*/
-/*adaptado de from http://designshack.net/articles/css/5-simple-and-practical-css-list-styles-you-can-copy-and-paste/*/
+/*-------- MENU ------------------------*/
+
 
 header{
     position: fixed;
@@ -50,19 +49,7 @@ header{
            z-index:100;
      color:white;
 }
-/*
-header h1{
-    font-size:6vh;
-}
 
-header nav *{
-     height: 3vh;
-}
-
-header nav span input{
-     width: 9vw;
-     height: 3vh;
-}*/
 
 nav h2 {
     font-weight: bold;
@@ -71,8 +58,8 @@ nav h2 {
     font: 3em;
     margin: 0;
 }
-
-nav ul {
+/* ao usar a tag ul */
+nav ul {   
     overflow: auto;
     list-style-type: none;
 overflow: visible
@@ -110,7 +97,7 @@ overflow: visible
         nav ul li.active a {
             font-weight: bold;
             color: white;
-            /*color: #333;*/
+ 
         }
 
 /*---------- event.php display ------------------------------------*/
