@@ -107,42 +107,11 @@ function getRestaurants($restName, $sortMode)
 	return results;
 }
 
-function printRestaurantReviews($restId)
+function insertRestaurant($restName, $restDesc)
 {
 	$db = new PDO('sqlite:rest.db');
-	
-	//TODO: SEPARATE SQL FROM PRESENTATION
-	$stmt = $db->prepare('SELECT restaurante_reviews.stars as stars, restaurante_reviews.comentario as comentario, user.username as username ' .
-						 'FROM restaurante_reviews INNER JOIN restaurante ' .
-						 'ON restaurante_reviews.restaurant_id = ?' .
-						 'INNER JOIN user ON user.id = restaurante_reviews.user_id');
-	$stmt->execute(array($restId));
-	$results = $stmt->fetchAll();
-	
-	$html_string = "<ul>";
-	
-	foreach($results as &$review)
-		{
-			$html_string .= "<li>";
-			
-			$html_string .= "<h3> " . $review['username'] . "'s Review" . " </h3><br>" .
-							"<h4> " . $review['stars'] . "/5" . " </h4><br><br>";
-			if(!empty($review['comentario']))
-			{
-				$html_string .= "<h5> " . $review['comentario'] . "</h5>";
-			}
-			
-			$html_string .= "</li>";
-		}
-	
-	$html_string .= "</ul>";
-	
-	if(strcmp($html_string, "<ul></ul>") == 0)
-	{
-		$html_string = "This restaurant hasn't been reviewed yet!";
-	}
-	
-	echo $html_string;
+	$stmt = $db->prepare("INSERT INTO restaurante VALUES (?, ?, ?, ?)");
+	$stmt->execute(array(null, $restName, $restDesc, $_SESSION['login_user']));
 }
 
 function printSearchRestaurants()
@@ -184,7 +153,9 @@ function getRestaurantName($restId)
 	return $results[0]['nome'];
 }
 
-function insertNewReviewOnRestaurant($restId, $restStars, $restComment)
+/* Review functions */
+
+function insertReviewOnRestaurant($restId, $restStars, $restComment)
 {
 	$db = new PDO('sqlite:rest.db');
 	$stmt = $db->prepare("INSERT INTO restaurante_reviews VALUES (?, ?, ?, ?, ?)");
@@ -194,8 +165,60 @@ function insertNewReviewOnRestaurant($restId, $restStars, $restComment)
 function deleteReviewFromRestaurant($revId)
 {
 	$db = new PDO('sqlite:rest.db');
-	$stmt = $db->prepare("DELETE FROM restaurant WHERE id = ?");
+	$stmt = $db->prepare("DELETE FROM restaurante_reviews WHERE id = ?");
 	$stmt->execute(array($revId));
+}
+
+function insertReplyToReview($revId, $reply)
+{
+	$db = new PDO('sqlite:rest.db');
+	$stmt = $db->prepare("INSERT INTO owner_replies VALUES (?, ?, ?, ?)");
+	$stmt->execute(array(null, $_SESSION['login_user'], $revId, $reply));
+}
+
+function deleteReplyToReview($repId)
+{
+	$db = new PDO('sqlite:rest.db');
+	$stmt = $db->prepare("DELETE FROM owner_replies WHERE id = ?");
+	$stmt->execute(array($repId));
+}
+
+function printRestaurantReviews($restId)
+{
+	$db = new PDO('sqlite:rest.db');
+	
+	//TODO: SEPARATE SQL FROM PRESENTATION
+	$stmt = $db->prepare('SELECT restaurante_reviews.stars as stars, restaurante_reviews.comentario as comentario, user.username as username ' .
+						 'FROM restaurante_reviews INNER JOIN restaurante ' .
+						 'ON restaurante_reviews.restaurant_id = ? ' .
+						 'INNER JOIN user ON user.id = restaurante_reviews.user_id');
+	$stmt->execute(array($restId));
+	$results = $stmt->fetchAll();
+	
+	$html_string = "<ul>";
+	
+	foreach($results as &$review)
+		{
+			$html_string .= "<li>";
+			
+			$html_string .= "<h3> " . $review['username'] . "'s Review" . " </h3><br>" .
+							"<h4> " . $review['stars'] . "/5" . " </h4><br><br>";
+			if(!empty($review['comentario']))
+			{
+				$html_string .= "<h5> " . $review['comentario'] . "</h5>";
+			}
+			
+			$html_string .= "</li>";
+		}
+	
+	$html_string .= "</ul>";
+	
+	if(strcmp($html_string, "<ul></ul>") == 0)
+	{
+		$html_string = "This restaurant hasn't been reviewed yet!";
+	}
+	
+	echo $html_string;
 }
 
 ?>
