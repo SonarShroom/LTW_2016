@@ -49,8 +49,15 @@ header{
            z-index:100;
      color:white;
 }
+block {
+  background-color: #993333;
+  padding: 3em;
+}
 
-
+.line-break
+{
+    display: block;
+}
 nav h2 {
     font-weight: bold;
     text-decoration: none;

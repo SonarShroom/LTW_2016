@@ -19,32 +19,36 @@ include_once('php_sqlite_func.php');
   <?php login_header(); ?>
     </header>
 
-    <div class="left_float">
+    
       <h2>My Restaurants</h2>
-      <?php $result = getUserReviews();
-  $html_string = "<ul>";
+<br><br>
+      In this section, you can view your previously added restaurants.<br>
+  You can also edit a restaurant or delete it. <br><br><br><br>
+
+
+<div class="left_float">
+
+      <?php $result = getOwnedRestaurants();
+
   
   //go through all the results and build the html from it
   foreach($result as &$restaurants)
   {
-   $html_string .= "<li>";
+
     
-    $html_string .= "<h3> " . $restaurants['nome'] . " </h3><br><br>" .
-            "<h4> " . $restaurants['descricao'] . " </h4><br>".
-            "<h5> " . $restaurants['num_reviews'] . " </h4><br>";
-   
-    
-    $html_string .= "</li>";
+  $html_string = "<block><p class='line-break'><b>Name:</b> " . $restaurants['nome'] . 
+    "</p><p class='line-break'><b>Description: </b> " . $restaurants['descricao'] . 
+    "</p><p class='line-break'><b>Nr Reviews: </b> " . $restaurants['num_reviews'] . "</p></block>";
+
+
   }
   
   //show a list with all the scores, and comments from each review
   
-  $html_string .= "</ul>";
+
   
   echo $html_string; ?>
     </div>
   </body>
 
 </html>
-In this section, you can view your previously added restaurants.<br>
-  You can also edit a restaurant or delete it.
