@@ -6,7 +6,7 @@ include('restaurante_data.php');
 <html>
 	<!-- empty checks if any GET variable is set or not. -->
 	<head>
-		<title><?php if(!empty($_GET['restName'])) { echo $_GET['restName']; } else { echo "No restaurant selected!"; } ?></title>
+		<title><?php if(!empty($_GET['restId'])) { echo getRestaurantName($_GET['restId']); } else { echo "No restaurant selected!"; } ?></title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="css/myStyle.css"> 
 		<?php meta_includes(); ?>
@@ -15,12 +15,12 @@ include('restaurante_data.php');
 	<body>
 		<header>
 			<?php login_header(); ?>
-			<h1><?php if(!empty($_GET['restName'])) { echo $_GET['restName']; } else { echo "No restaurant selected!"; }?></h1>
+			<h1><?php if(!empty($_GET['restId'])) { echo getRestaurantName($_GET['restId']); } else { echo "No restaurant selected!"; } ?></h1>
 		</header>
 
 		<div class="left_float">
 			Restaurant Reviews
-			<?php if(!empty($_GET['restName'])) { printRestaurantReviews(); } ?>
+			<?php if(!empty($_GET['restId'])) { printRestaurantReviews($_GET['restId']); } ?>
 		</div>
 	</body>
 	
