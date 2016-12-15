@@ -1,6 +1,6 @@
 <?php
 include('header.php');
-include('restaurante_data.php');
+include('php_sqlite_func.php');
 ?>
 
 <html>
@@ -18,7 +18,7 @@ include('restaurante_data.php');
 	<?php login_header(); ?>
 			
 		</header>
-<?php if(!empty($_GET['restId'])) { echo getRestaurantName($_GET['restId']); } else { echo "No restaurant selected!"; } ?>
+		<?php if(!empty($_GET['restId'])) { echo getRestaurantName($_GET['restId']); } else { echo "No restaurant selected!"; } ?>
 		<div class="left_float">
 			Restaurant Reviews
 			<?php if(!empty($_GET['restId'])) { printRestaurantReviews($_GET['restId']); } ?>
