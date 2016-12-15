@@ -10,16 +10,16 @@ function main_display()
 	
 	switch($status)
 	{
-		case PHP_SESSION_DISABLED:/*display_login_form();*/ break;
+		case PHP_SESSION_DISABLED:break;
 		case PHP_SESSION_ACTIVE:
 			if(checkLogged()) ;
-			else {/*session_destroy();*/ display_register_form();}
+			else { display_register_form();}
 			break;
-		case PHP_SESSION_NONE:/*display_login_form();*/  break;
+		case PHP_SESSION_NONE:  break;
 			default; break;
 	}
 }
-//insertRestaurant() - restname, descricao, ownerid,
+
 ?>
 
 <!DOCTYPE html>
@@ -45,15 +45,7 @@ function main_display()
     <br>
 
 
-<!--<form id="newRestaurant" action="log_in.php" method="post" enctype="multipart/form-data">
-	<span>
-    username:<input type="text" name="log_username">
-	password:<input type="password" name="log_password">
-        </span>
-		<input type="hidden" name="login_token" value="'.$_SESSION['login_token'].'">
-		<input type="hidden" name="choice" value="LOGIN">
-			<input class="form_button" type="submit" value="LOGIN">
-    </form> -->
+
 
 	<h2>Add new Restaurant</h2>
 
@@ -82,13 +74,13 @@ function main_display()
   <input type="hidden" name="choice" value="INSERTRESTAURANT">
   <input class="form_button" type="submit" value="SUBMIT">
 </form>
-   <!-- <a href="list_events.php">Check all public events</a> -->
+   
 	<br>
 	
 	<footer>
 	
        	<br>
-	<div id="date_display"><?php // echo date('l jS \of F Y h:i:s A')?></div>
+	
 
 
     </footer>

@@ -10,12 +10,12 @@ function main_display()
 	
 	switch($status)
 	{
-		case PHP_SESSION_DISABLED:/*display_login_form();*/ break;
+		case PHP_SESSION_DISABLED: break;
 		case PHP_SESSION_ACTIVE:
 			if(checkLogged()) ;
-			else {/*session_destroy();*/ display_register_form();}
+			else { display_register_form();}
 			break;
-		case PHP_SESSION_NONE:/*display_login_form();*/  break;
+		case PHP_SESSION_NONE:  break;
 			default; break;
 	}
 }
@@ -42,21 +42,18 @@ function main_display()
 	</header>
 	
     <br>
-		<!--<?php ///*main_display()*/; print_events(popular_events(),true,"Popular Events");?>-->
+		
     <br>
     <br>
-   <!-- <a href="list_events.php">Check all public events</a> -->
+  
 	<br>
 	
 	<footer>
 	
-	<!-- brincadeira, um bocado azeite, é pra tirar  :: se calhar inserir aqui as reviews mais recentes, assim nao era preciso login para as ver-->
-        <marquee behavior="scroll" direction="left">
-            Welcome to RestFeed. 
-        </marquee>
+	
 
        	<br>
-	<div id="date_display"><?php // echo date('l jS \of F Y h:i:s A')?></div>
+	<div id="date_display"><?php ?></div>
 
 <br><br>By Ricardo Silva and Mario Esteves
     </footer>

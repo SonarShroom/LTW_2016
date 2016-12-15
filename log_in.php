@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") 	{
 	
 // ----------------------- AUX FUNCS
 
-function number_of_usersnamed()					//nome repetido??
+function number_of_usersnamed()					
 {
 	global $result;
 	global $postusername;
@@ -46,7 +46,7 @@ function number_of_usersnamed()					//nome repetido??
     $result=$stmt->fetchAll();
 	return count($result);
 }
-function number_of_usersnamed_with_pass()    //pass repetido??
+function number_of_usersnamed_with_pass()    
 {
 	global $postusername;
 	global $postpass;
@@ -76,7 +76,7 @@ function user_type2()   //envia o username , retorna o tipo de utilizador (0 - o
 
 
 
-function number_of_users_with_email()   //email repetido??
+function number_of_users_with_email()   
 {
 	global $postusername;
 	global $postpass;
@@ -117,7 +117,7 @@ function number_of_users_with_email()   //email repetido??
 			
 			do {
 				for ($i = 0; $i < $length; $i++) {
-					$code.=$valid[mt_rand(0, strlen($valid))];  //erro??
+					$code.=$valid[mt_rand(0, strlen($valid))];  
 				}
 			} while(activation_code($code)>0);
 			
@@ -207,16 +207,9 @@ return;
         echo "<script type='text/javascript'>alert('Incorrect Username or Password.');</script>";
 		session_destroy();
 		echo "<script type='text/javascript'>window.location.href = 'main.php';</script>";
-		//???session_destroy();???
+		
     }
 
 
-//should check $_SERVER['HTTP_REFERER']
 
-//usefull funcs
-//session_regenerate_id(true);
-// remove all session variables
-//session_unset(); 
-// destroy the session 
-//session_destroy(); 
 ?>

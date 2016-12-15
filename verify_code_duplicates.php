@@ -10,7 +10,7 @@ function activation_code($code) {
 	$duplicate = $stmt->fetchAll();
 	return count($duplicate);
 }
-	//recovery code, ver de onde vem =====================================================
+	//recovery code
 function recovery_code($code) {
 	$dbh = new PDO('sqlite:rest.db');
 	$dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
