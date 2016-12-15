@@ -29,6 +29,7 @@ include_once('php_sqlite_func.php');
 											'</p><p class="line-break"><b>Description: </b> ' . $restaurant['rest_descricao'] . 
 											'</p><p class="line-break"><b>Nr Reviews: </b> ' . $restaurant['num_reviews'] . '</p></block>';
 						}
+						echo $html_string;
 						
 						if(empty($html_string))
 						{
