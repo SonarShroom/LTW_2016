@@ -65,50 +65,50 @@ function getRestaurants($restName, $sortMode)
 	 location
 	 locationdesc*/
 	
-	$sqlQuery = 'SELECT * FROM restaurante_count_revs ';
+	$sqlQuery = "SELECT * FROM restaurante_count_revs ";
 	
-	if($restName == null || $restName == '')
+	if(!empty($restName))
 	{
-		$sqlQuery .= 'WHERE lower(restaurant.name) = ? ';
+		$sqlQuery .= "WHERE restaurante_count_revs.rest_nome LIKE '%" . $restName . "%' ";
 		switch($sortMode)
 		{
 			default:
-				$sqlQuery .= 'ORDER BY nome';
+				$sqlQuery .= "ORDER BY rest_nome ";
 				break;
 			case "alphabetical":
-				$sqlQuery .= 'ORDER BY nome';
+				$sqlQuery .= "ORDER BY rest_nome ";
 				break;
 			case "alphabeticaldesc":
-				$sqlQuery .= 'ORDER BY nome DESC';
+				$sqlQuery .= "ORDER BY rest_nome DESC ";
 				break;
 			case "location":
-				$sqlQuery .= 'ORDER BY localizacao';
+				$sqlQuery .= "ORDER BY rest_localizacao ";
 				break;
 			case "locationdesc":
-				$sqlQuery .= 'ORDER BY localizacao DESC';
+				$sqlQuery .= "ORDER BY rest_localizacao DESC ";
 				break;
 		}
 		$stmt = $db->prepare($sqlQuery);
-		$stmt->execute(array(strtolower($restName)));
+		$stmt->execute();
 	}
 	else
 	{
 		switch($sortMode)
 		{
 			default:
-				$sqlQuery .= 'ORDER BY nome';
+				$sqlQuery .= "ORDER BY rest_nome";
 				break;
 			case "alphabetical":
-				$sqlQuery .= 'ORDER BY nome';
+				$sqlQuery .= "ORDER BY rest_nome";
 				break;
 			case "alphabeticaldesc":
-				$sqlQuery .= 'ORDER BY nome DESC';
+				$sqlQuery .= "ORDER BY rest_nome DESC";
 				break;
 			case "location":
-				$sqlQuery .= 'ORDER BY localizacao';
+				$sqlQuery .= "ORDER BY rest_localizacao";
 				break;
 			case "locationdesc":
-				$sqlQuery .= 'ORDER BY localizacao DESC';
+				$sqlQuery .= "ORDER BY rest_localizacao DESC";
 				break;
 		}
 		$stmt = $db->prepare($sqlQuery);
