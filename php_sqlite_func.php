@@ -39,8 +39,6 @@ function updateUserDetails()
 	$db = new PDO('sqlite:rest.db');
 	$stmt = $db->prepare($sqlQuery);
 	$stmt->execute($execArray);
-	header('location: main.php');
-	exit;
 }
 
 /* Restaurant functions */
@@ -56,11 +54,12 @@ function getRestaurants($restName, $sortMode)
 	 location
 	 locationdesc*/
 	
-	$sqlQuery = 'SELECT * FROM restaurante_count_revs ';
+	$sqlQuery = 'SELECT restaurante.nome as nome, restaurante.descricao as descricao, count(restaurante_reviews.restaurant_id) as num_reviews 
+	             FROM restaurante INNER JOIN restaurante_reviews ON restaurante.id = restaurante_reviews.restaurant_id ';
 	
 	if($restName == null || $restName == '')
 	{
-		$sqlQuery .= 'WHERE lower(restaurant.name) = ? ';
+		$sqlQuery .= 'AND lower(restaurant.name) = ? ';
 		switch($sortMode)
 		{
 			default:
@@ -109,7 +108,7 @@ function getRestaurants($restName, $sortMode)
 	return $stmt->fetchAll();
 }
 
-if(isset($_POST['restName']) && isset($_POST['restDesc']) && isset($_POST['restLoc']))
+if(!isset($_POST['restId']) && isset($_POST['restName']) && isset($_POST['restDesc']) && isset($_POST['restLoc']))
 {
 	insertRestaurant();
 }
@@ -118,8 +117,6 @@ function insertRestaurant()
 	$db = new PDO('sqlite:rest.db');
 	$stmt = $db->prepare("INSERT INTO restaurante VALUES (?, ?, ?, ?, ?)");
 	$stmt->execute(array(null, $_POST['restName'], $_POST['restDesc'], $_SESSION['login_user'],$_POST['restLoc']));
-	header('location: main.php');
-	exit;
 }
 
 function getSearchRestaurants()
@@ -180,17 +177,15 @@ function getRestaurantName($restId)
 	return $results[0]['nome'];
 }
 
-if(isset($_POST['restId']) && isset($_POST['restName']) && isset($_POST['restDesc']))
+if(isset($_POST['resId']) && isset($_POST['resName']) && isset($_POST['resDesc']) && isset($_POST['resLoc']))
 {
 	updateRestaurantInfo();
 }
 function updateRestaurantInfo()
 {
 	$db = new PDO('sqlite:rest.db');
-	$stmt = $db->prepare("UPDATE restaurante SET nome = ?, descricao = ? WHERE id = ?");
-	$stmt->execute(array($restId));
-	header('location: main.php');
-	exit;
+	$stmt = $db->prepare("UPDATE restaurante SET nome = ?, descricao = ? , localizacao = ? WHERE id = ?");
+	$stmt->execute(array($_POST['resName'],$_POST['resDesc'],$_POST['resLoc'],$_POST['resId']));
 }
 
 /* Review functions */

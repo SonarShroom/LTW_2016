@@ -39,18 +39,18 @@ include_once('php_sqlite_func.php');
     <form action="php_sqlite_func.php" method="post">
  
   <label>Restaurant Name:
-    <input type="text" name="restName"></input>
+    <input required type="text" name="resName"></input>
   </label><br><br>
   
   <label>Description:
-    <textarea name="Restdescription"></textarea>
+    <textarea required name="resDesc"></textarea>
   </label><br>
   
   <label>Localization:
-    <textarea name="Restlocalization"></textarea>
+    <textarea required name="resLoc"></textarea>
   </label><br>
-  <?php  $_GET['id'] ?>
-  <input type="hidden" name="choice" value="<?php echo $_GET['id']?>">
+  <?php  echo '<input type="hidden" name="resId" value="' . $_GET['id'] . '"> ';?>
+ 
   <input type="hidden" name="choice" value="UPDATERESTAURANT">
   <input class="form_button" type="submit" value="SUBMIT">
 </form>
