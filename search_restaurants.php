@@ -19,7 +19,19 @@ include_once('php_sqlite_func.php');
 
 		<div class="left_float">
 			<h2>Restaurants</h2>
+
+			<br><br>
+
+			<form method=get action="search_restaurants.php"><input type="hidden" name="choice" value="ADVANCEDSEARCH">
+			<input class="form_button" type="submit" value="ADVANCED SEARCH"><input type="text" name="restName"></input></form>
 			<section>
+				<br>Sort by:<br> <select name="log_type">
+				<option value="alphabetical">alphabetical</option>
+				<option value="alphabeticaldesc">alphabetical desc</option>
+				<option value="location">location</option>
+				<option value="locationdesc">location desc</option>
+				
+				</select><br><br>
 				<ul>
 					<?php $foundRestaurants = getSearchRestaurants();
 						$html_string = "";
