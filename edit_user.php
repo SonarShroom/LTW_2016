@@ -22,33 +22,27 @@ include_once('php_sqlite_func.php');
 	<br>
 	<br>
 	<br>
-	<h2>Edit Restaurant</h2>
+	<h2>Edit your profile</h2>
 	<br>
 	<br>
-	In this section, you can edit your restaurant.
+	In this section, you can edit your user details.
 	<br>
 	<br>
 	<br>
 	<form action="php_sqlite_func.php" method="post">
-		<label>Username:
-			<input required type="text" name="resName"></input>
-		</label><br><br>
-
+		<?php
+		echo '<label>Username:
+			  <input required type="text" name="nn" value="' . getUserDetails($_SESSION['login_user'])[0]['username'] . '"></input>
+			  </label><br><br>';
+		?>
+		
 		<label>Current password:
 			<input required name="uu" type="text"></textarea>
 		</label><br>
 
 		<label>New password:
-			<textarea required name="resLoc"></textarea>
+			<input required name="nuu" type="text"></textarea>
 		</label><br>
-		
-		<label>Confirm password:
-			<textarea required name="resLoc"></textarea>
-		</label><br>
-		
-		<?php  echo '<input type="hidden" name="resId" value="' . $_GET['id'] . '"> ';?>
-
-		<input type="hidden" name="choice" value="UPDATERESTAURANT">
 		<input class="form_button" type="submit" value="SUBMIT">
 		</form>
 	</body>

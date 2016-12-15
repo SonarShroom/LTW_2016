@@ -52,6 +52,7 @@ echo '<ul id="loggedin_options">
 <li> <a href="main.php">Home</a> </li>
 <li> <a href="rest.php">Restaurants</a> </li>
 <li> <a href="my_reviews.php">My Reviews</a> </li>
+<li> <a href="edit_user.php">Edit Profile</a> </li>
 </ul>';
  echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . $_SESSION['login_username'];
  echo
@@ -67,7 +68,7 @@ echo '<ul id="loggedin_options">
 <li> <a href="rest.php">Restaurants</a> </li>
 <li> <a href="My_Restaurants.php">My Restaurants</a> </li>
 <li> <a href="newRestaurant.php">Add Restaurant</a> </li>
-
+<li> <a href="edit_user.php">Edit Profile</a> </li>
 </ul>';
  
 echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . $_SESSION['login_username'];
