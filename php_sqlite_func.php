@@ -222,12 +222,22 @@ function getUserReviews()
 	return $stmt->fetchAll();
 }
 
+function getReview($id)
+{
+	
+	$db = new PDO('sqlite:rest.db');
+	$stmt = $db->prepare("SELECT * FROM restaurante_reviews WHERE id=?");
+	$stmt->execute(array($id));
+	return $stmt->fetchAll();
+}
+
+
 function insertReviewOnRestaurant($restId, $restStars, $restComment)
 {
 	$db = new PDO('sqlite:rest.db');
-	$stmt = $db->prepare("INSERT INTO restaurante_reviews".
-						"OUTPUT Inserted.ID VALUES (?, ?, ?, ?, ?)");
-	$stmt->execute(array($restStars, $restComment, $_SESSION['login_user'], $restId, null));
+	$stmt = $db->prepare("INSERT INTO restaurante_reviews(stars,comentario,user_id,restaurant_id) ".
+						"VALUES (?, ?, ?, ?)");
+	$stmt->execute(array($restStars, $restComment, $_SESSION['login_user'], $restId));
 	return $stmt->fetch();
 }
 

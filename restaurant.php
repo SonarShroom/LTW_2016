@@ -29,14 +29,22 @@ $reviews = getRestaurantReviews($_GET['id']);
 		<p><?=$restaurant['descricao']?></p><br>
 		
 		<div class="reviews" id="reviews">
-		
+		<form id="review_form" method="POST">
 			<label>New Review:
-				<textarea required name="review" id="review"></textarea>
+				<textarea required name="comentario" id="review"></textarea>
 			</label><br>
 				<input type="hidden" name="choice" value="INSERTRESTAURANT">
-				<input type="hidden" name="restaurantId" value=<?="'$_GET['id']'"?> id="restId">
-				<label>Stars:<input type="number" name="quantity" min="1" max="5" id="stars"></label>
-			<input class="form_button" type="submit" id="submitbutton" value="SUBMIT">
+				<input type="hidden" name="restId" value='<?=$_GET['id']?>' id="restId">
+				<label>Stars: <select name="stars">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							</select> </label>
+			
+		</form>
+		<button class="form_button" id="submitbutton">Submit</button>
 			<?php
 			foreach($reviews as &$review) {
 				echo "<p class='line-break'><b>".$review['username']." (".$review['stars']." stars)</b> said:".
@@ -45,19 +53,16 @@ $reviews = getRestaurantReviews($_GET['id']);
 			?>
 		</div>
 <script>
-    $("#submitbutton").click(function(){
-        var comentario = $(#review).val();
-		var restId = $(#restId).val();
-		var stars = $(#stars).val();
+$('#review_form').submit(false);
+   $("#submitbutton").click(function (e) {
+        var form = $('#review_form');
      $.ajax({
-         url: "insert_review.php", 
-         type: 'POST',
-         data: {comentario: comentario,
-				restId: restId,
-				stars: stars},
-		 dataType: "json",
-         success: function(data){ 
-            
+         url: "insert_review.php",
+		type: 'POST',
+         data: form.serialize(),
+         success: function(resp){
+			 data = JSON.parse(resp);
+            $('#reviews').append($("<p class='line-break'><b>"+data.username+" ("+data.stars+" stars)</b> said:<p class='line-break'>"+data.comentario+"</p>").hide().fadeIn());
          }
       });
     });
