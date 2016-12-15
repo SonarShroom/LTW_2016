@@ -40,7 +40,7 @@ include_once('php_sqlite_func.php');
 			<p class='line-break'><a href='delete_restaurant.php?id=" . $restaurants['rest_id'] . "'>DELETE</a></p></block></div><br><br>";
 		}
 
-		//show a list with all the scores, and comments from each review
+		
 
 
 
