@@ -40,6 +40,7 @@ include_once('php_sqlite_func.php');
 						{
 							$html_string .= '<block><p class="line-break"><b>Name:</b> <a href="restaurant.php?id=' . $restaurant['rest_id'] . '">' . $restaurant['rest_nome'] . '</a>' .
 											'</p><p class="line-break"><b>Description: </b> ' . $restaurant['rest_descricao'] . 
+											'</p><p class="line-break"><b>Location: </b> ' . $restaurant['rest_localizacao'] .
 											'</p><p class="line-break"><b>Nr Reviews: </b> ' . $restaurant['num_reviews'] . '</p></block>';
 						}
 						echo $html_string;
