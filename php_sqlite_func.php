@@ -141,7 +141,7 @@ function getSearchRestaurants()
 	}
 	else
 	{
-		if(empty($_GET['restName']))
+		if(!isset($_GET['restName']))
 		{
 			return getRestaurants("", "alphabetical");
 		}
