@@ -54,7 +54,7 @@ include_once('php_sqlite_func.php');
   <input type="hidden" name="choice" value="UPDATERESTAURANT">
   <input class="form_button" type="submit" value="SUBMIT">
 </form>
-   <!-- <a href="list_events.php">Check all public events</a> -->
+
   <br>
   
   <footer>

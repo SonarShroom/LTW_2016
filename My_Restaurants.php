@@ -37,7 +37,7 @@ include_once('php_sqlite_func.php');
 			"</p><p class='line-break'><b>Localization: </b> " . $restaurants['rest_localizacao'] . 
 			"</p><p class='line-break'><b>Nr Reviews: </b> " . $restaurants['num_reviews'] . 
 			"</p><p class='line-break'><a href='edit_restaurant.php?id=" . $restaurants['rest_id'] . "'>EDIT</a></p>
-			<p class='line-break'><a href='edit_restaurant.php?id=" . $restaurants['rest_id'] . "'>DELETE</a></p></block></div><br><br>";
+			<p class='line-break'><a href='delete_restaurant.php?id=" . $restaurants['rest_id'] . "'>DELETE</a></p></block></div><br><br>";
 		}
 
 		//show a list with all the scores, and comments from each review

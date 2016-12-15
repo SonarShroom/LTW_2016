@@ -6,6 +6,8 @@ include_once('header.php');
    nn = new username
    nuu = new password
 */
+
+
 if(isset($_POST['uu']) && (isset($_POST['nn']) || isset($_POST['nuu'])))
 {
 	updateUserDetails();
@@ -187,6 +189,20 @@ function updateRestaurantInfo()
 	$stmt = $db->prepare("UPDATE restaurante SET nome = ?, descricao = ? , localizacao = ? WHERE id = ?");
 	$stmt->execute(array($_POST['resName'],$_POST['resDesc'],$_POST['resLoc'],$_POST['resId']));
 }
+
+
+/*if(isset($_POST['resId']))
+{
+	deleteRestaurant();
+}*/
+function deleteRestaurant($idrest)
+{
+	$db = new PDO('sqlite:rest.db');
+	$stmt = $db->prepare("DELETE FROM restaurante WHERE id = ?");
+	$stmt->execute(array($idrest));
+}
+
+
 
 /* Review functions */
 
