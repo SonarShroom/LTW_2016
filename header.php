@@ -50,7 +50,7 @@ function user_type()   //envia o username , retorna o tipo de utilizador (0 - ow
 function display_reviewer_form(){
 echo '<ul id="loggedin_options"> 
 <li> <a href="main.php">Home</a> </li>
-<li> <a href="rest.php">Restaurants</a> </li>
+<li> <a href="rest_reviews.php">Restaurants</a> </li>
 <li> <a href="my_reviews.php">My Reviews</a> </li>
 <li> <a href="edit_user.php">Edit Profile</a> </li>
 </ul>';

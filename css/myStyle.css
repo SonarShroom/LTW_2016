@@ -405,3 +405,15 @@ a.button {
     text-decoration: none;
     color: initial;
 }
+
+.reviews {
+    background-color: lightgrey;
+    width: 300px;
+	height: 230px;
+    padding: 25px;
+    margin: 25px;
+	box-shadow: 0px 0px 20px #000;
+	display: block;
+	margin: 0 auto;
+	overflow-y: scroll;
+}

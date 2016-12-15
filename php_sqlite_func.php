@@ -165,6 +165,16 @@ function getRestaurantName($restId)
 	return $results[0]['nome'];
 }
 
+function getRestaurant($restId)
+{
+	$db = new PDO('sqlite:rest.db');
+	$stmt = $db->prepare("SELECT * FROM restaurante WHERE id = ?");
+	$stmt->execute(array($restId));
+	$results = $stmt->fetchAll();
+	
+	return $results[0];
+}
+
 if(isset($_POST['resId']) && isset($_POST['resName']) && isset($_POST['resDesc']) && isset($_POST['resLoc']))
 {
 	updateRestaurantInfo();
@@ -215,8 +225,10 @@ function getUserReviews()
 function insertReviewOnRestaurant($restId, $restStars, $restComment)
 {
 	$db = new PDO('sqlite:rest.db');
-	$stmt = $db->prepare("INSERT INTO restaurante_reviews VALUES (?, ?, ?, ?, ?)");
+	$stmt = $db->prepare("INSERT INTO restaurante_reviews".
+						"OUTPUT Inserted.ID VALUES (?, ?, ?, ?, ?)");
 	$stmt->execute(array($restStars, $restComment, $_SESSION['login_user'], $restId, null));
+	return $stmt->fetch();
 }
 
 function deleteReviewFromRestaurant($revId)
@@ -245,8 +257,9 @@ function getRestaurantReviews($restId)
 	$db = new PDO('sqlite:rest.db');
 	$stmt = $db->prepare('SELECT restaurante_reviews.stars as stars, restaurante_reviews.comentario as comentario, user.username as username ' .
 						 'FROM restaurante_reviews INNER JOIN restaurante ' .
-						 'ON restaurante_reviews.restaurant_id = ? ' .
-						 'INNER JOIN user ON user.id = restaurante_reviews.user_id');
+						 'ON restaurante_reviews.restaurant_id = restaurante.id ' .
+						 'INNER JOIN user ON user.id = restaurante_reviews.user_id '.
+						 'WHERE restaurante.id=?');
 	$stmt->execute(array($restId));
 	return $stmt->fetchAll();
 }
