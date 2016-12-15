@@ -2,12 +2,18 @@
 include_once('header.php');
 /* User functions */
 
+function getUserDetails($userId)
+{
+	$db = new PDO('sqlite:rest.db');
+	$stmt = $db->prepare("SELECT * FROM user WHERE id = ?");
+	$stmt->execute(array($userId));
+	return $stmt->fetchAll();
+}
+
 /* uu = pass
    nn = new username
    nuu = new password
 */
-
-
 if(isset($_POST['uu']) && (isset($_POST['nn']) || isset($_POST['nuu'])))
 {
 	updateUserDetails();
@@ -56,12 +62,11 @@ function getRestaurants($restName, $sortMode)
 	 location
 	 locationdesc*/
 	
-	$sqlQuery = 'SELECT restaurante.nome as nome, restaurante.descricao as descricao, count(restaurante_reviews.restaurant_id) as num_reviews 
-	             FROM restaurante INNER JOIN restaurante_reviews ON restaurante.id = restaurante_reviews.restaurant_id ';
+	$sqlQuery = 'SELECT * FROM restaurante_count_revs ';
 	
 	if($restName == null || $restName == '')
 	{
-		$sqlQuery .= 'AND lower(restaurant.name) = ? ';
+		$sqlQuery .= 'WHERE lower(restaurant.name) = ? ';
 		switch($sortMode)
 		{
 			default:
@@ -133,30 +138,6 @@ function getSearchRestaurants()
 	{
 		return getRestaurants($_GET['restName'], "alphabetical");
 	}
-	
-	/* ===PASSAR PARA FRONT END===
-	$html_string = "Restaurant Reviews<br><ul>";
-	
-	foreach($restaurantsList as &$restaurant)
-	{
-		$html_string .= "<li>";
-		$linkToRest = "http://gnomo.fe.up.pt/~up201607942/rest.php?restId=" . $restaurant['id'];
-		
-		//TODO: ADD RESTAURANT REVIEW COUNT
-		$html_string .= "<a href=" . $linkToRest . ">" . $restaurant['nome'] . "</a>";
-		
-		$html_string .= "</li>";
-	}
-	
-	$html_string .= "</ul>";
-	
-	if(strcmp($html_string, "Restaurant Reviews<br><ul></ul>") == 0)
-	{
-		$html_string = "No restaurants found matching your criteria.";
-	}
-	
-	echo $html_string;
-	*/
 }
 
 function getOwnedRestaurants()
@@ -190,7 +171,6 @@ function updateRestaurantInfo()
 	$stmt->execute(array($_POST['resName'],$_POST['resDesc'],$_POST['resLoc'],$_POST['resId']));
 }
 
-
 /*if(isset($_POST['resId']))
 {
 	deleteRestaurant();
@@ -201,8 +181,6 @@ function deleteRestaurant($idrest)
 	$stmt = $db->prepare("DELETE FROM restaurante WHERE id = ?");
 	$stmt->execute(array($idrest));
 }
-
-
 
 /* Review functions */
 
@@ -221,32 +199,6 @@ function getUserReviews()
 	$stmt->execute(array($_SESSION['login_user']));
 
 	return $stmt->fetchAll();
-	
-	/* ===PASSAR PARA FRONT END===
-	//$result = getUserReviews();
-	$html_string = "<ul>";
-	
-	//go through all the results and build the html from it
-	foreach($results as &$review)
-	{
-		$html_string .= "<li>";
-		
-		$html_string .= "<h3> " . $review['nome'] . " </h3><br><br>" .
-						"<h4> " . $review['stars'] . " </h4><br>";
-		if($review['comentario'] != null)
-		{
-			$html_string .= "<h5> " . $review['comentario'] . "</h5>";
-		}
-		
-		$html_string .= "</li>";
-	}
-	
-	//show a list with all the scores, and comments from each review
-	
-	$html_string .= "</ul>";
-	
-	echo $html_string;
-	*/
 }
 
 function insertReviewOnRestaurant($restId, $restStars, $restComment)
@@ -286,34 +238,6 @@ function getRestaurantReviews($restId)
 						 'INNER JOIN user ON user.id = restaurante_reviews.user_id');
 	$stmt->execute(array($restId));
 	return $stmt->fetchAll();
-	
-	/* ==PASSAR PARA FRONT END===
-	//$result = getUserReviews();
-	$html_string = "<ul>";
-	
-	foreach($results as &$review)
-		{
-			$html_string .= "<li>";
-			
-			$html_string .= "<h3>" . $review['username'] . "'s Review" . " </h3><br>" .
-							"<h4>" . $review['stars'] . "/5" . "</h4>";
-			if(!empty($review['comentario']))
-			{
-				$html_string .= "<br><br><h5> " . $review['comentario'] . "</h5>";
-			}
-			
-			$html_string .= "</li>";
-		}
-	
-	$html_string .= "</ul>";
-	
-	if(strcmp($html_string, "<ul></ul>") == 0)
-	{
-		$html_string = "This restaurant hasn't been reviewed yet!";
-	}
-	
-	echo $html_string;
-	*/
 }
 
 ?>
