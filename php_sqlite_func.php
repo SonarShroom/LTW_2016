@@ -1,5 +1,5 @@
 <?php
-
+include_once('header.php');
 /* User functions */
 
 /* uu = pass
@@ -108,15 +108,15 @@ function getRestaurants($restName, $sortMode)
 	return $stmt->fetchAll();
 }
 
-if(isset($_POST['restName']) && isset($_POST['restDesc']))
+if(isset($_POST['restName']) && isset($_POST['restDesc']) && isset($_POST['restLoc']))
 {
 	insertRestaurant();
 }
 function insertRestaurant()
 {
 	$db = new PDO('sqlite:rest.db');
-	$stmt = $db->prepare("INSERT INTO restaurante VALUES (?, ?, ?, ?)");
-	$stmt->execute(array(null, $_POST['restName'], $_POST['restDesc'], $_SESSION['login_user']));
+	$stmt = $db->prepare("INSERT INTO restaurante VALUES (?, ?, ?, ?, ?)");
+	$stmt->execute(array(null, $_POST['restName'], $_POST['restDesc'], $_SESSION['login_user'],$_POST['restLoc']));
 }
 
 function getSearchRestaurants()

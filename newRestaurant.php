@@ -73,11 +73,11 @@ function main_display()
   </label><br><br>
   
   <label>Description:
-    <textarea name="Restdescription"></textarea>
+    <textarea name="restDesc"></textarea>
   </label><br>
   
   <label>Localization:
-    <textarea name="Restlocalization"></textarea>
+    <textarea name="restLoc"></textarea>
   </label><br>
   <input type="hidden" name="choice" value="INSERTRESTAURANT">
   <input class="form_button" type="submit" value="SUBMIT">
