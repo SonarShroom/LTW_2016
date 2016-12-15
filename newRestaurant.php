@@ -69,15 +69,15 @@ function main_display()
     <form action="php_sqlite_func.php" method="post">
  
   <label>Restaurant Name:
-    <input type="text" name="restName"></input>
+    <input required type="text" name="restName"></input>
   </label><br><br>
   
   <label>Description:
-    <textarea name="restDesc"></textarea>
+    <textarea required name="restDesc"></textarea>
   </label><br>
   
   <label>Localization:
-    <textarea name="restLoc"></textarea>
+    <textarea required name="restLoc"></textarea>
   </label><br>
   <input type="hidden" name="choice" value="INSERTRESTAURANT">
   <input class="form_button" type="submit" value="SUBMIT">
