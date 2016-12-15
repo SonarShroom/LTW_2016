@@ -54,12 +54,11 @@ function getRestaurants($restName, $sortMode)
 	 location
 	 locationdesc*/
 	
-	$sqlQuery = 'SELECT restaurante.nome as nome, restaurante.descricao as descricao, count(restaurante_reviews.restaurant_id) as num_reviews 
-	             FROM restaurante INNER JOIN restaurante_reviews ON restaurante.id = restaurante_reviews.restaurant_id ';
+	$sqlQuery = 'SELECT * FROM restaurante_count_revs ';
 	
 	if($restName == null || $restName == '')
 	{
-		$sqlQuery .= 'AND lower(restaurant.name) = ? ';
+		$sqlQuery .= 'WHERE lower(restaurant.name) = ? ';
 		switch($sortMode)
 		{
 			default:
