@@ -39,6 +39,7 @@ function updateUserDetails()
 	$db = new PDO('sqlite:rest.db');
 	$stmt = $db->prepare($sqlQuery);
 	$stmt->execute($execArray);
+	header('location: main.php');
 }
 
 /* Restaurant functions */
@@ -116,6 +117,7 @@ function insertRestaurant()
 	$db = new PDO('sqlite:rest.db');
 	$stmt = $db->prepare("INSERT INTO restaurante VALUES (?, ?, ?, ?, ?)");
 	$stmt->execute(array(null, $_POST['restName'], $_POST['restDesc'], $_SESSION['login_user'],$_POST['restLoc']));
+	header('location: main.php');
 }
 
 function getSearchRestaurants()
@@ -185,6 +187,7 @@ function updateRestaurantInfo()
 	$db = new PDO('sqlite:rest.db');
 	$stmt = $db->prepare("UPDATE restaurante SET nome = ?, descricao = ? WHERE id = ?");
 	$stmt->execute(array($restId));
+	header('location: main.php');
 }
 
 /* Review functions */
