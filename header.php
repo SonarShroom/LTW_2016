@@ -57,7 +57,8 @@ echo '<ul id="loggedin_options">
  echo
  '   <FORM METHOD="LINK" ACTION="log_out.php">
 <INPUT class="form_button" TYPE="submit" VALUE="LOGOUT">
-</FORM>';
+</FORM>&nbsp;&nbsp; <input type="hidden" name="choice" value="LOGIN">
+			<input class="form_button" type="submit" value="SEARCH"><input type="text" name="SEARCH"></input>';
 }
 
 function display_owner_form(){
@@ -73,7 +74,8 @@ echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' 
  echo
  '   <FORM METHOD="LINK" ACTION="log_out.php">
 <INPUT class="form_button" TYPE="submit" VALUE="LOGOUT">
-</FORM>';
+</FORM>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="hidden" name="choice" value="SEARCH">
+			<input class="form_button" type="submit" value="SEARCH"><input type="text" name="Search"></input>';
 }
 
 //menu de login
