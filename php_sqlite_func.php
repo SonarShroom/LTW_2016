@@ -40,6 +40,7 @@ function updateUserDetails()
 	$stmt = $db->prepare($sqlQuery);
 	$stmt->execute($execArray);
 	header('location: main.php');
+	exit;
 }
 
 /* Restaurant functions */
@@ -118,6 +119,7 @@ function insertRestaurant()
 	$stmt = $db->prepare("INSERT INTO restaurante VALUES (?, ?, ?, ?, ?)");
 	$stmt->execute(array(null, $_POST['restName'], $_POST['restDesc'], $_SESSION['login_user'],$_POST['restLoc']));
 	header('location: main.php');
+	exit;
 }
 
 function getSearchRestaurants()
@@ -188,6 +190,7 @@ function updateRestaurantInfo()
 	$stmt = $db->prepare("UPDATE restaurante SET nome = ?, descricao = ? WHERE id = ?");
 	$stmt->execute(array($restId));
 	header('location: main.php');
+	exit;
 }
 
 /* Review functions */
