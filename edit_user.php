@@ -37,11 +37,11 @@ include_once('php_sqlite_func.php');
 		?>
 		
 		<label>Current password:
-			<input required name="uu" type="text"></textarea>
+			<input required name="uu" type="text"></input>
 		</label><br>
 
 		<label>New password:
-			<input required name="nuu" type="text"></textarea>
+			<input required name="nuu" type="text"></input>
 		</label><br>
 		<input class="form_button" type="submit" value="SUBMIT">
 		</form>
