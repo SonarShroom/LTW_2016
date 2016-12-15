@@ -19,9 +19,6 @@ include_once('php_sqlite_func.php');
 		<h1>RestFeed</h1> <br>
 		<?php login_header(); ?>
 	</header>
-	<br>
-	<br>
-	<br>
 	<h2>Edit your profile</h2>
 	<br>
 	<br>
@@ -37,11 +34,11 @@ include_once('php_sqlite_func.php');
 		?>
 		
 		<label>Current password:
-			<input required name="uu" type="text"></input>
-		</label><br>
+			<input required name="uu" type="password"></input>
+		</label><br><br>
 
 		<label>New password:
-			<input required name="nuu" type="text"></input>
+			<input required name="nuu" type="password"></input>
 		</label><br>
 		<input class="form_button" type="submit" value="SUBMIT">
 		</form>

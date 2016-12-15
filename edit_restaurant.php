@@ -19,9 +19,7 @@ include_once('php_sqlite_func.php');
 		<h1>RestFeed</h1> <br>
 		<?php login_header(); ?>
 	</header>
-	<br>
-	<br>
-	<br>
+
 	<h2>Edit Restaurant</h2>
 	<br>
 	<br>

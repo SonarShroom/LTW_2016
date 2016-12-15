@@ -54,9 +54,8 @@ function main_display()
 		<input type="hidden" name="choice" value="LOGIN">
 			<input class="form_button" type="submit" value="LOGIN">
     </form> -->
-    <br>
-    <br>
-	Add new Restaurant
+
+	<h2>Add new Restaurant</h2>
 
 	<br><br>
 	In this section, you can add a new restaurant. You will be the owner.<br>
@@ -64,7 +63,8 @@ function main_display()
 
 	<br>
 	<br>
-
+	<br>
+	<br>
 
     <form action="php_sqlite_func.php" method="post">
  

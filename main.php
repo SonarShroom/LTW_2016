@@ -58,7 +58,7 @@ function main_display()
        	<br>
 	<div id="date_display"><?php // echo date('l jS \of F Y h:i:s A')?></div>
 
-
+<br><br>By Ricardo Silva and Mario Esteves
     </footer>
 	
 </body>

@@ -1,1 +1,0 @@
-- passar o lost password para o login_form
