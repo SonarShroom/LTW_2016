@@ -59,7 +59,7 @@ echo '<ul id="loggedin_options">
  '   <FORM METHOD="LINK" ACTION="log_out.php">
 <INPUT class="form_button" TYPE="submit" VALUE="LOGOUT">
 </FORM>&nbsp;&nbsp; <form method=get action="search_restaurants.php"><input type="hidden" name="choice" value="LOGIN">
-			<input class="form_button" type="submit" value="SEARCH"><input type="text" name="SEARCH"></input></form>';
+			<input class="form_button" type="submit" value="SEARCH"><input type="text" name="restName"></input></form>';
 }
 
 function display_owner_form(){
@@ -76,7 +76,7 @@ echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' 
  '   <FORM METHOD="LINK" ACTION="log_out.php">
 <INPUT class="form_button" TYPE="submit" VALUE="LOGOUT">
 </FORM>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <form method=get action="search_restaurants.php"><input type="hidden" name="choice" value="SEARCH">
-			<input class="form_button" type="submit" value="SEARCH"><input type="text" name="Search"></input></form>';
+			<input class="form_button" type="submit" value="SEARCH"><input type="text" name="restName"></input></form>';
 }
 
 //menu de login
