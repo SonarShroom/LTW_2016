@@ -13,17 +13,11 @@ if (checkLogged() && isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['L
 }
 $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
 
-//hummm pra tirar !!:::::::::::::::::::::::::::::::=============================::::::::::::::::::::::::::::::::::::::::::::::::::::::: NAO SEI O QUE FAZ
- // $dbh = new PDO('sqlite:rest.db');
- // $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
- // $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
- // $stmt = $dbh->prepare("SELECT * from eventTypes");
- // $stmt->execute();
- // $event_type_names = $stmt->fetchAll();
+
 
 function checkLogged()
 {
-	 if (isset($_SESSION['login_user'])				// erro
+	 if (isset($_SESSION['login_user'])				
 		 &&  $_SESSION['login_user']!=null
 	 && isset($_SESSION['login_username'])
 		 &&  $_SESSION['login_username']!=null
@@ -44,14 +38,13 @@ function user_type()   //envia o username , retorna o tipo de utilizador (0 - ow
 
 }
 
-//menu apos estar logado ! (temos de fazer um para o owner e outro para o reviewer - e talvez um apra o user normal qe apenas tera rests como favorito)
 
-//falta criar a pag my reviews, create a review 
+
+
 function display_reviewer_form(){
 echo '<ul id="loggedin_options"> 
 <li> <a href="main.php">Home</a> </li>
 <li> <a href="search_restaurants.php">Restaurants</a> </li>
-<li> <a href="my_reviews.php">My Reviews</a> </li>
 <li> <a href="edit_user.php">Edit Profile</a> </li>
 </ul>';
  echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . $_SESSION['login_username'];
@@ -103,7 +96,7 @@ function display_login_form(){
 
 function display_register_form(){  //formulario de registo 
 
-//NOTA!! CRIAR PAGINA A PARTE, A JANELA FICA FEIA PRA C* =::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
 	
 	echo  //manda para o login em POST o conteudo das caixas (type recebe 1 ou 0 consoante o tipo de user 0-owner 1-reviewer)
     '<div id="register" title="Register form" style="display:none;"><form id="logNreg" action="log_in.php" method="post" enctype="multipart/form-data">
@@ -120,7 +113,7 @@ function display_register_form(){  //formulario de registo
 		<a href="recovery.php">Lost your password?</a>   
         <br><input class="form_button" type="submit" value="REGISTER">
     </form></div>';
-			//PASSAR O LOST YOUR PASSWORD PARA O LOGIN INICIAL !
+	
 	echo '<script type="text/javascript" src="register_form.js"></script>';
 
 }

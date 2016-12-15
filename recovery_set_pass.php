@@ -2,7 +2,7 @@
 include('header.php');
 include('getInputSafe.php');
 
-sleep(1);//avoid spam
+sleep(1);
 
 
 

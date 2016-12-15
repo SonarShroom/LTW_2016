@@ -2,9 +2,10 @@
 include('header.php');
 include('getInputSafe.php');
 include('verify_code_duplicates.php');
-$result;//users with given username (and password, depending on the method called)
+$result;
+//users with given username (and password, depending on the method called)
 
-sleep(1);//avoid spam
+sleep(1);
 
 // ----------------------- VALIDATE OPERATION
 
@@ -24,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") 	{
 	
 	if( !isset($postusername)
 	||!isset($postpass)
-	//||!isset($postemail)
+	
 	||$postusername===null
 	||$postusername===""
 	||$postpass===null
@@ -34,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") 	{
 	 return '';	
 	}
 	
-// ----------------------- AUX FUNCS
+
 
 function number_of_usersnamed()					
 {
@@ -135,7 +136,7 @@ function number_of_users_with_email()
 			$msg = "Hello, $postusername. Welcome to RestFeed!\n
 			To complete your registration, simply click <a href='$link'>this link</a>. to activate your account.\n
 			Thank you and see you later!";
-			$from = "restfeed.admin@fe.up.pt";  //teste
+			$from = "restfeed.admin@fe.up.pt";  
 			$headers = "From: $from \r\n";
 			$headers .= "Reply-To: $from \r\n";
 			$headers .= "Return-Path: $from\r\n";

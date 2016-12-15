@@ -1,6 +1,6 @@
 $().ready(loadDocument);
 
-//  LIXO TALVEZ :::::::::::::::::::::::::::::::::::::::::
+//  pag carregada faz o load
 function loadDocument() {
 	
 	$("form").submit(function() {

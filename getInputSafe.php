@@ -1,5 +1,5 @@
 <?php 
-//------REGEX
+//------REGEX - in http://php.net/manual/en/function.preg-match.php 
 
     $scheme_match = "((https?|ftp)\:\/\/)?"; // SCHEME 
     $userNpass_match= "([\w+!* (),;?&=\$\_\.\-\/\<\>]+)"; // User and Pass 
